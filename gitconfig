@@ -25,5 +25,6 @@
   autocorrect = prompt
 [merge]
   tool = vimdiff
+  conflictStyle = zdiff3
 [core]
   editor = vim
