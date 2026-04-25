@@ -57,6 +57,16 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
+# do history expansion on space
+bindkey " " magic-space
+
+# Open buffer line in editor
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
+# Make zmv command available
+autoload -Uz zmv
 # Aliases
 alias ls='ls --color'
 alias vim='nvim'
