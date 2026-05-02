@@ -35,9 +35,13 @@ autoload -Uz compinit && compinit
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Undo
+bindkey '^_' undo
+
 bindkey '^f' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
+
 # History
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
@@ -59,6 +63,14 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # do history expansion on space
 bindkey " " magic-space
+
+# hotkey for git commit
+git_commit_widget() {
+  LBUFFER+='git commit -m ""'
+  CURSOR=$((CURSOR - 1))
+}
+zle -N git_commit_widget
+bindkey '^Xgc' git_commit_widget
 
 # Open buffer line in editor
 autoload -Uz edit-command-line
